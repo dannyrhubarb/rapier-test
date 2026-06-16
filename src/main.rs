@@ -376,18 +376,6 @@ async fn main() {
             draw_circle(s.x, s.y, radius, color);
         }
 
-        // Radial thrust halo around the ship
-        if glow > 0.01 {
-            let halo_r = 180.0 + glow * 120.0;
-            let hc = w2s(cam_x, cam_y, sh, cam_x, cam_y);
-            for i in (0u8..10).rev() {
-                let frac = i as f32 / 10.0;
-                let r = halo_r * (1.0 - frac * 0.85);
-                let a = (glow * (1.0 - frac) * 55.0) as u8;
-                draw_circle(hc.x, hc.y, r, Color::from_rgba(255, 140, 30, a));
-            }
-        }
-
         // Ship
         let sc = w2s(cam_x, cam_y, sh, cam_x, cam_y);
         draw_rectangle_ex(sc.x, sc.y, SCALE, SCALE, DrawRectangleParams {
